@@ -1,0 +1,19 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: "e9d5538b-a88f-4e6e-8014-29d166168a47"
+          heroku_app_name: "real-commerce" #Must be unique in Heroku
+          heroku_email: "ikadismile@gmail.com"
+        env:
+          MONGO_URL: ${{secrets.MONGO_URL}}
+          PORT: ${{secrets.PORT}}
